@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Coding Journey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .clicked {
+            font-family: 'Courier New', monospace;
+            font-size: 20px;
+            transform: rotate(10deg) scale(1.2);
+        }
+        #details, #rating-container {
+            margin-top: 20px;
+            display: none;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Coding Journey</h1>
+    <p>Click the button to learn more about me and rate this webpage!</p>
+    <button onclick="showDetails(this)">Click Me</button>
+    
+    <div id="details">
+        <h2>About Me</h2>
+        <p><strong>Name:</strong> Sarthak</p>
+        <p><strong>Learning:</strong> I'm a newbie exploring coding and web development.</p>
+        <p><strong>Goal:</strong> I want to build professional-looking webpages and dive into automation.</p>
+    </div>
+
+    <div id="rating-container">
+        <p>Rate this webpage (1-10):</p>
+        <select id="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <button onclick="submitRating()">Submit Rating</button>
+    </div>
+
+    <script>
+        function showDetails(button) {
+            button.classList.toggle("clicked");
+            document.getElementById("details").style.display = "block";
+            document.getElementById("rating-container").style.display = "block";
+        }
+
+        function submitRating() {
+            let rating = document.getElementById("rating").value;
+            alert("Thank you for rating! You rated this webpage: " + rating + "/10");
+        }
+    </script>
+</body>
+</html>

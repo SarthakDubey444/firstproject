@@ -1,82 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Coding Journey</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .clicked {
-            font-family: 'Courier New', monospace;
-            font-size: 20px;
-            transform: rotate(10deg) scale(1.2);
-        }
-        #details, #rating-container {
-            margin-top: 20px;
-            display: none;
-            padding: 10px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sarthak | Robotics, Gaming & Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9f9f9;
+      --text: #1f2937;
+      --card: #ffffff;
+      --accent: #3b82f6;
+      --nav: #111827;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --text: #f3f4f6;
+      --card: #1e293b;
+      --accent: #60a5fa;
+      --nav: #0f172a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background-color: var(--nav);
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 8px 14px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85em;
+    }
+
+    nav {
+      background-color: var(--nav);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px 0;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: var(--text);
+      background-color: var(--card);
+      padding: 10px 15px;
+      border-radius: 6px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      background-color: var(--accent);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .hero {
+      padding: 70px 20px;
+      background: linear-gradient(to right, #3b82f6, #6366f1);
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.6em;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.1em;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 2em;
+      color: var(--accent);
+    }
+
+    .card {
+      background-color: var(--card);
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .projects, .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card, .video-card {
+      background-color: var(--card);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover, .video-card:hover {
+      transform: scale(1.03);
+    }
+
+    .video-card iframe {
+      width: 100%;
+      height: 160px;
+      border-radius: 10px;
+    }
+
+    .social-links {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 10px;
+      background: var(--accent);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 0.95em;
+      transition: background 0.3s;
+    }
+
+    .social-links a:hover {
+      background: #2563eb;
+    }
+
+    footer {
+      background-color: var(--nav);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 30px;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2em;
+      }
+
+      .hero p {
+        font-size: 1em;
+      }
+    }
+  </style>
 </head>
-<body>
-    <h1>Welcome to My Coding Journey</h1>
-    <p>Click the button to learn more about me and rate this webpage!</p>
-    <button onclick="showDetails(this)">Click Me</button>
-    
-    <div id="details">
-        <h2>About Me</h2>
-        <p><strong>Name:</strong> Sarthak</p>
-        <p><strong>Learning:</strong> I'm a newbie exploring coding and web development.</p>
-        <p><strong>Goal:</strong> I want to build professional-looking webpages and dive into automation.</p>
+<body data-theme="light">
+
+  <button class="toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
+
+  <header>
+    <h1>Sarthak Dubey</h1>
+    <p>Gaming • Tech • Robotics • Full Stack Explorer</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#videos">Videos</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="home" class="hero">
+    <h1>Welcome to My Digital Lab</h1>
+    <p>Creating things at the intersection of code, creativity, and control.</p>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+      <p>Hey! I’m <strong>Sarthak</strong>, an explorer in web dev, gaming tech, and robotics. I enjoy working with modern web stacks like HTML/CSS/JS, love automating things using Arduino, and frequently dive into gaming analysis, modding, and hardware builds. I believe in learning by doing — and this website is my ongoing lab of experiments and passion.</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Smart Home System</h3>
+        <p>Arduino + Bluetooth based home control system that lets you control lights, fans, and more from a smartphone app.</p>
+      </div>
+      <div class="project-card">
+        <h3>Gaming Stats Tracker</h3>
+        <p>Web dashboard using JavaScript and API integration to show real-time match performance in Valorant and CS:GO.</p>
+      </div>
+      <div class="project-card">
+        <h3>Personal Portfolio</h3>
+        <p>Yes, this site! Responsive, animated, dark-mode ready — a showcase of my vision and skill in modern front-end dev.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos">
+    <h2>My YouTube Tech Videos</h2>
+    <div class="videos">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        <p>Arduino Car Robot - Explained & Demo</p>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
+        <p>My Gaming Setup Tour 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="card">
+      <p>Interested in collaborating or just chatting tech?</p>
+      <p><strong>Email:</strong> sarthakwebdev@example.com</p>
     </div>
 
-    <div id="rating-container">
-        <p>Rate this webpage (1-10):</p>
-        <select id="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
-        <button onclick="submitRating()">Submit Rating</button>
+    <div class="social-links">
+      <a href="https://github.com/sarthak-git" target="_blank">GitHub</a>
+      <a href="https://www.youtube.com/@sarthakYT" target="_blank">YouTube</a>
     </div>
+  </section>
 
-    <script>
-        function showDetails(button) {
-            button.classList.toggle("clicked");
-            document.getElementById("details").style.display = "block";
-            document.getElementById("rating-container").style.display = "block";
-        }
+  <footer>
+    <p>© 2025 Sarthak Dubey • Built with 💻 passion and ⚡ JavaScript</p>
+  </footer>
 
-        function submitRating() {
-            let rating = document.getElementById("rating").value;
-            alert("Thank you for rating! You rated this webpage: " + rating + "/10");
-        }
-    </script>
+  <script>
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme');
+      document.body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    }
+  </script>
 </body>
 </html>

@@ -3,279 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sarthak | Robotics, Gaming & Tech</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Happy Birthday Papa!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #f9f9f9;
-      --text: #1f2937;
-      --card: #ffffff;
-      --accent: #3b82f6;
-      --nav: #111827;
-    }
-
-    [data-theme="dark"] {
-      --bg: #0f172a;
-      --text: #f3f4f6;
-      --card: #1e293b;
-      --accent: #60a5fa;
-      --nav: #0f172a;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    header {
-      background-color: var(--nav);
-      color: white;
-      padding: 30px 0;
-      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #fdd9d9, #fbb3b3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       position: relative;
     }
-
-    .toggle-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 8px 14px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.85em;
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
     }
-
-    nav {
-      background-color: var(--nav);
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 15px 0;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 4rem;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      animation: fadeInDown 2s ease-out forwards;
+      opacity: 0;
+      z-index: 2;
     }
-
-    nav a {
-      color: var(--text);
-      background-color: var(--card);
-      padding: 10px 15px;
-      border-radius: 6px;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    nav a:hover {
-      background-color: var(--accent);
-      color: white;
-      transform: scale(1.05);
-    }
-
-    .hero {
-      padding: 70px 20px;
-      background: linear-gradient(to right, #3b82f6, #6366f1);
-      color: white;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 2.6em;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 1.1em;
-    }
-
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
     h2 {
+      font-size: 1.6rem;
+      color: #fff;
       margin-bottom: 20px;
-      font-size: 2em;
-      color: var(--accent);
+      animation: fadeInUp 2.5s ease-out forwards;
+      opacity: 0;
+      z-index: 2;
     }
-
-    .card {
-      background-color: var(--card);
-      padding: 25px;
-      border-radius: 10px;
-      margin-bottom: 25px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    .card:hover {
-      transform: translateY(-5px);
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    .projects, .videos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+    button {
+      padding: 16px 32px;
+      font-size: 1.1rem;
+      border: none;
+      background: #fff;
+      color: #ff4f4f;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 2;
     }
-
-    .project-card, .video-card {
-      background-color: var(--card);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
-
-    .project-card:hover, .video-card:hover {
-      transform: scale(1.03);
-    }
-
-    .video-card iframe {
-      width: 100%;
-      height: 160px;
-      border-radius: 10px;
-    }
-
-    .social-links {
+    .popup {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: #fff;
+      color: #444;
+      padding: 35px;
+      border-radius: 20px;
       text-align: center;
-      margin-top: 30px;
+      box-shadow: 0 0 35px rgba(0,0,0,0.4);
+      max-width: 90%;
+      width: 350px;
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      z-index: 4;
     }
-
-    .social-links a {
-      display: inline-block;
-      margin: 0 10px;
-      background: var(--accent);
-      color: white;
-      padding: 10px 16px;
-      border-radius: 6px;
-      font-size: 0.95em;
-      transition: background 0.3s;
+    .popup.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
     }
-
-    .social-links a:hover {
-      background: #2563eb;
-    }
-
-    footer {
-      background-color: var(--nav);
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      margin-top: 30px;
-      font-size: 0.9em;
-    }
-
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 2em;
-      }
-
-      .hero p {
-        font-size: 1em;
-      }
+    .closeBtn {
+      position: absolute; top: 10px; right: 15px;
+      background: none; border: none;
+      font-size: 1.4rem; cursor: pointer; color: #999;
     }
   </style>
 </head>
-<body data-theme="light">
+<body>
+  <canvas id="effectCanvas"></canvas>
+  <h1>Happy Birthday Papa! 🎉</h1>
+  <h2>Your love is our guiding light. We celebrate you today and every day. 💖</h2>
+  <button id="surpriseBtn">Open Your Surprise 🎁</button>
 
-  <button class="toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
+  <div class="popup" id="popup">
+    <button class="closeBtn" id="closePopup">✕</button>
+    <h3 id="popupText"></h3>
+  </div>
 
-  <header>
-    <h1>Sarthak Dubey</h1>
-    <p>Gaming • Tech • Robotics • Full Stack Explorer</p>
-  </header>
-
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#videos">Videos</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section id="home" class="hero">
-    <h1>Welcome to My Digital Lab</h1>
-    <p>Creating things at the intersection of code, creativity, and control.</p>
-  </section>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-      <p>Hey! I’m <strong>Sarthak</strong>, an explorer in web dev, gaming tech, and robotics. I enjoy working with modern web stacks like HTML/CSS/JS, love automating things using Arduino, and frequently dive into gaming analysis, modding, and hardware builds. I believe in learning by doing — and this website is my ongoing lab of experiments and passion.</p>
-    </div>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3>Smart Home System</h3>
-        <p>Arduino + Bluetooth based home control system that lets you control lights, fans, and more from a smartphone app.</p>
-      </div>
-      <div class="project-card">
-        <h3>Gaming Stats Tracker</h3>
-        <p>Web dashboard using JavaScript and API integration to show real-time match performance in Valorant and CS:GO.</p>
-      </div>
-      <div class="project-card">
-        <h3>Personal Portfolio</h3>
-        <p>Yes, this site! Responsive, animated, dark-mode ready — a showcase of my vision and skill in modern front-end dev.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="videos">
-    <h2>My YouTube Tech Videos</h2>
-    <div class="videos">
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-        <p>Arduino Car Robot - Explained & Demo</p>
-      </div>
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
-        <p>My Gaming Setup Tour 2025</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <div class="card">
-      <p>Interested in collaborating or just chatting tech?</p>
-      <p><strong>Email:</strong> sarthakwebdev@example.com</p>
-    </div>
-
-    <div class="social-links">
-      <a href="https://github.com/sarthak-git" target="_blank">GitHub</a>
-      <a href="https://www.youtube.com/@sarthakYT" target="_blank">YouTube</a>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2025 Sarthak Dubey • Built with 💻 passion and ⚡ JavaScript</p>
-  </footer>
+  <audio id="bgMusic" src="birthday_song.mp3" loop></audio>
 
   <script>
-    function toggleTheme() {
-      const current = document.body.getAttribute('data-theme');
-      document.body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    const canvas = document.getElementById('effectCanvas');
+    const ctx = canvas.getContext('2d');
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+
+    let particles = [];
+    function random(min, max) { return Math.random() * (max - min) + min; }
+    class Particle {
+      constructor(x, y, dx, dy, color, life, size) {
+        this.x = x; this.y = y; this.dx = dx; this.dy = dy;
+        this.color = color; this.life = life; this.size = size;
+      }
+      update() {
+        this.life--;
+        this.dy += 0.02;
+        this.x += this.dx; this.y += this.dy;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
+    function launch(x, y) {
+      for (let i = 0; i < 60; i++) {
+        particles.push(new Particle(
+          x, y,
+          random(-3, 3), random(-3, 3),
+          `hsl(${random(0, 360)}, 80%, 60%)`,
+          random(60, 120), random(2, 4)
+        ));
+      }
+    }
+    function animate() {
+      ctx.fillStyle = 'rgba(0,0,0,0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(p => p.life > 0);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+    window.addEventListener('click', e => launch(e.clientX, e.clientY));
+
+    // Popup logic
+    const popup = document.getElementById('popup');
+    const textEl = document.getElementById('popupText');
+    const btn = document.getElementById('surpriseBtn');
+    const closeBtn = document.getElementById('closePopup');
+    const music = document.getElementById('bgMusic');
+    const message = "Dear Papa,\n\nYour strength, kindness, and wisdom shape our lives every day.\nYou are not only our father, but our hero and greatest blessing.\nWishing you peace, happiness, and a heart full of joy today and always.\n\nWe love you endlessly. 💕";
+
+    function typeText(text, el, delay = 40) {
+      el.textContent = '';
+      let i = 0;
+      function step() {
+        if (i < text.length) {
+          el.textContent += text[i];
+          i++;
+          setTimeout(step, delay);
+        }
+      }
+      step();
+    }
+
+    btn.addEventListener('click', () => {
+      popup.classList.add('show');
+      typeText(message, textEl);
+      music.play();
+      launch(window.innerWidth / 2, window.innerHeight / 2);
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popup.classList.remove('show');
+      music.pause();
+      music.currentTime = 0;
+    });
   </script>
 </body>
 </html>

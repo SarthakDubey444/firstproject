@@ -2,187 +2,268 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Papa!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sarthak Kumar Dubey | Developer & Gamer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* STYLES - Theme */
     body {
+      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top left, #fdd9d9, #fbb3b3);
-      overflow: hidden;
+      background-color: #0f111a;
+      color: #f5f6fa;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      scroll-behavior: smooth;
+    }
+    body.dark-mode {
+      background-color: #f5f6fa;
+      color: #0f111a;
+    }
+    header {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      position: relative;
-    }
-    canvas {
+      padding: 20px;
+      background-color: #1e1f26;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
     }
-    h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 4rem;
-      color: #fff;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      animation: fadeInDown 2s ease-out forwards;
-      opacity: 0;
-      z-index: 2;
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffffff;
+      text-decoration: none;
     }
-    h2 {
-      font-size: 1.6rem;
-      color: #fff;
-      margin-bottom: 20px;
-      animation: fadeInUp 2.5s ease-out forwards;
-      opacity: 0;
-      z-index: 2;
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
     }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-50px); }
-      to { opacity: 1; transform: translateY(0); }
+    nav ul li a {
+      color: #f5f6fa;
+      text-decoration: none;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    button {
-      padding: 16px 32px;
-      font-size: 1.1rem;
+    .btn {
+      background-color: #6c5ce7;
+      padding: 10px 20px;
       border: none;
-      background: #fff;
-      color: #ff4f4f;
-      border-radius: 40px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-      z-index: 2;
-    }
-    button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    }
-    .popup {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
-      background: #fff;
-      color: #444;
-      padding: 35px;
       border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #00cec9;
+      transform: scale(1.05);
+    }
+    .hero {
       text-align: center;
-      box-shadow: 0 0 35px rgba(0,0,0,0.4);
-      max-width: 90%;
-      width: 350px;
+      padding: 150px 20px 100px;
+    }
+    .hero span {
+      color: #00cec9;
+    }
+    .typed-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00cec9;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 40px 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    iframe {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .contact {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .reveal {
       opacity: 0;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-      z-index: 4;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
     }
-    .popup.show {
-      transform: translate(-50%, -50%) scale(1);
+    .reveal.active {
       opacity: 1;
+      transform: translateY(0);
     }
-    .closeBtn {
-      position: absolute; top: 10px; right: 15px;
-      background: none; border: none;
-      font-size: 1.4rem; cursor: pointer; color: #999;
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1e1f26;
+      color: #888;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
     }
   </style>
 </head>
 <body>
-  <canvas id="effectCanvas"></canvas>
-  <h1>Happy Birthday Papa! 🎉</h1>
-  <h2>Your love is our guiding light. We celebrate you today and every day. 💖</h2>
-  <button id="surpriseBtn">Open Your Surprise 🎁</button>
+  <div id="particles-js"></div>
+  <header>
+    <a href="#" class="logo">Sarthak<span>.</span></a>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div>
+      <button id="theme-toggle" class="btn">Toggle Theme</button>
+      <button id="music-toggle" class="btn">Play Music</button>
+    </div>
+  </header>
 
-  <div class="popup" id="popup">
-    <button class="closeBtn" id="closePopup">✕</button>
-    <h3 id="popupText"></h3>
-  </div>
+  <section class="hero" id="hero">
+    <h1>Hello, I’m <span>Sarthak</span></h1>
+    <h2 class="typed-text"></h2>
+    <p class="reveal">A Web Developer & Gamer who builds creative websites with HTML, CSS & JS.</p>
+    <a href="#projects" class="btn reveal">See My Work</a>
+  </section>
 
-  <audio id="bgMusic" src="birthday_song.mp3" loop></audio>
+  <section class="section" id="projects">
+    <h2 class="reveal">My Projects</h2>
+    <div class="projects">
+      <div class="card reveal">
+        <h3>3D Interactive Landing Page</h3>
+        <p>Built using HTML, CSS, Three.js</p>
+        <iframe src="https://www.youtube.com/embed/your_video_id_1" allowfullscreen></iframe>
+      </div>
+      <div class="card reveal">
+        <h3>Gaming UI Concept</h3>
+        <p>Inspired by FPS UIs, built with modern CSS effects</p>
+        <iframe src="https://www.youtube.com/embed/your_video_id_2" allowfullscreen></iframe>
+      </div>
+      <div class="card reveal">
+        <h3>Minimal Portfolio</h3>
+        <p>Clean portfolio design with smooth scroll and tilt effect</p>
+        <iframe src="https://www.youtube.com/embed/your_video_id_3" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
 
+  <section class="contact" id="contact">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:dubeysarthakkr@gmail.com">dubeysarthakkr@gmail.com</a></p>
+    <p>Let's create something great together!</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Sarthak Kumar Dubey | Made with ❤️ and JavaScript</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script>
-    const canvas = document.getElementById('effectCanvas');
-    const ctx = canvas.getContext('2d');
-    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resize); resize();
-
-    let particles = [];
-    function random(min, max) { return Math.random() * (max - min) + min; }
-    class Particle {
-      constructor(x, y, dx, dy, color, life, size) {
-        this.x = x; this.y = y; this.dx = dx; this.dy = dy;
-        this.color = color; this.life = life; this.size = size;
-      }
-      update() {
-        this.life--;
-        this.dy += 0.02;
-        this.x += this.dx; this.y += this.dy;
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-    function launch(x, y) {
-      for (let i = 0; i < 60; i++) {
-        particles.push(new Particle(
-          x, y,
-          random(-3, 3), random(-3, 3),
-          `hsl(${random(0, 360)}, 80%, 60%)`,
-          random(60, 120), random(2, 4)
-        ));
-      }
-    }
-    function animate() {
-      ctx.fillStyle = 'rgba(0,0,0,0.08)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      particles = particles.filter(p => p.life > 0);
-      particles.forEach(p => { p.update(); p.draw(); });
-      requestAnimationFrame(animate);
-    }
-    animate();
-    window.addEventListener('click', e => launch(e.clientX, e.clientY));
-
-    // Popup logic
-    const popup = document.getElementById('popup');
-    const textEl = document.getElementById('popupText');
-    const btn = document.getElementById('surpriseBtn');
-    const closeBtn = document.getElementById('closePopup');
-    const music = document.getElementById('bgMusic');
-    const message = "Dear Papa,\n\nYour strength, kindness, and wisdom shape our lives every day.\nYou are not only our father, but our hero and greatest blessing.\nWishing you peace, happiness, and a heart full of joy today and always.\n\nWe love you endlessly. 💕";
-
-    function typeText(text, el, delay = 40) {
-      el.textContent = '';
-      let i = 0;
-      function step() {
-        if (i < text.length) {
-          el.textContent += text[i];
-          i++;
-          setTimeout(step, delay);
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: "#00cec9" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 2 }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
         }
-      }
-      step();
-    }
-
-    btn.addEventListener('click', () => {
-      popup.classList.add('show');
-      typeText(message, textEl);
-      music.play();
-      launch(window.innerWidth / 2, window.innerHeight / 2);
+      },
+      retina_detect: true
     });
 
-    closeBtn.addEventListener('click', () => {
-      popup.classList.remove('show');
-      music.pause();
-      music.currentTime = 0;
+    const toggleBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+    toggleBtn?.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+    });
+
+    const typedText = document.querySelector(".typed-text");
+    const phrases = ["Web Developer", "Creative Coder", "Tech Enthusiast", "Gamer"];
+    let phraseIndex = 0;
+    let letterIndex = 0;
+    let currentPhrase = "";
+    let isDeleting = false;
+    function type() {
+      if (!typedText) return;
+      currentPhrase = phrases[phraseIndex];
+      typedText.textContent = isDeleting ? currentPhrase.substring(0, letterIndex--) : currentPhrase.substring(0, letterIndex++);
+      if (!isDeleting && letterIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(type, 1000);
+      } else if (isDeleting && letterIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(type, 500);
+      } else {
+        setTimeout(type, isDeleting ? 50 : 100);
+      }
+    }
+    type();
+
+    const music = new Audio("https://cdn.pixabay.com/audio/2023/03/30/audio_f675f19d8e.mp3");
+    music.loop = true;
+    const musicBtn = document.getElementById("music-toggle");
+    let isPlaying = false;
+    musicBtn?.addEventListener("click", () => {
+      isPlaying = !isPlaying;
+      isPlaying ? music.play() : music.pause();
+      musicBtn.innerText = isPlaying ? "Pause Music" : "Play Music";
+    });
+
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => observer.observe(el));
+
+    const cursor = document.createElement("div");
+    cursor.style.position = "fixed";
+    cursor.style.width = "20px";
+    cursor.style.height = "20px";
+    cursor.style.border = "2px solid #00cec9";
+    cursor.style.borderRadius = "50%";
+    cursor.style.pointerEvents = "none";
+    cursor.style.transition = "transform 0.1s ease";
+    cursor.style.zIndex = 1000;
+    document.body.appendChild(cursor);
+    document.addEventListener("mousemove", e => {
+      cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
     });
   </script>
 </body>
